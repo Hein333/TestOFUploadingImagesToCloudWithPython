@@ -3,12 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic OCI Image App</title>
+    <title>Upload Image to OCI</title>
 </head>
 <body>
-    <h1>Hello from Render & Oracle Cloud!</h1>
+    <h1>Upload an Image to Oracle Cloud</h1>
     
-    <!-- Python dynamically inserts the OCI image URL here -->
-    <img src="{{ image_url }}" alt="Dynamic OCI Image" width="300">
+    <!-- Form to upload image via POST request -->
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+        <input type="file" name="image_file" accept="image/*" required>
+        <button type="submit">Upload to OCI</button>
+    </form>
+
+    {% if message %}
+        <p style="color: green;">{{ message }}</p>
+        <br>
+        <img src="{{ image_url }}" alt="Uploaded Image" width="300">
+    {% endif %}
 </body>
 </html>
